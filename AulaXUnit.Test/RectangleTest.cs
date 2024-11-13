@@ -1,4 +1,7 @@
 ﻿using AulaXUnit;
+using Microsoft.AspNetCore.Components;
+using System.Reflection;
+using Xunit.Sdk;
 
 namespace AulaXUnit.Test
 {
@@ -35,6 +38,20 @@ namespace AulaXUnit.Test
             double ExpectedArea = 0;
             double ResultPerimeter = rectangle.getArea();
             Assert.Equal(ExpectedArea, ResultPerimeter);
+        }
+
+        [Theory]
+        [InlineData(-2)]
+        [InlineData(-1)]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(2)]
+        public void TestPerimeter_for_integervalues(int value)
+        {
+            AulaXUnit.Rectangle rectangle = new AulaXUnit.Rectangle(value, value);
+            double ExpectedPerimeter = value * 4;
+            double ResultPerimeter = rectangle.getPerimeter();
+            Assert.Equal(ExpectedPerimeter, ResultPerimeter);
         }
     }
 }
